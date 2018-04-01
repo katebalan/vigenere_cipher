@@ -63,16 +63,29 @@ def shift_left(shift):
 
 
 def hack_key_length(encoded_info):
-    result = shift = list(encoded_info)
+    result = list(encoded_info)
+    shift = list(encoded_info)
+    compare_elements = {}
+    length_key = []
 
-    for i in range(ALPH_SIZE):
+    for j in range(ALPH_SIZE):
         shift = shift_left(shift)
         print("".join(shift))
 
-        for j in range(len(result)):
-            if result[j] == shift[i]:
-                pass
+        for i in range(len(result)):
+            # print(result[i])
+            # print(shift[i])
+            if result[i] == shift[i]:
+                if compare_elements.get(j):
+                    compare_elements[j] += 1
+                else:
+                    compare_elements[j] = 1
 
+        print(compare_elements)
+        if compare_elements[j] / len(result) > 0.06:
+            length_key.append(j + 1)
+
+    print(length_key)
 
 print(devide)
 hack_key_length(encrypt_msg)
