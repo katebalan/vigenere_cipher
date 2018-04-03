@@ -1,4 +1,6 @@
 # TODO hack: not finished
+# https://habrahabr.ru/post/103055/
+# https://habrahabr.ru/post/221485/
 
 
 ALPH_SIZE = 26
