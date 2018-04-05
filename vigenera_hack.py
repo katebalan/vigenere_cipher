@@ -12,11 +12,11 @@ devide = "\n***********\n"
 def only_letters(info):
     info = list(info)
     normal_info = []
+
     for i in range(len(info)):
         if info[i].isalpha():
             normal_info.append(info[i])
-    # print(info)
-    # print(normal_info)
+
     return normal_info
 
 
@@ -35,28 +35,27 @@ def shift_left(shift):
 def hack_key_length(encoded_info):
     result = only_letters(encoded_info)
     shift = only_letters(encoded_info)
+
     compare_elements = {}
     length_key = []
+    average = 0
 
     for j in range(ALPH_SIZE):
-        # print(devide)
-        # print(result)
         shift = shift_left(shift)
-        # print("".join(shift))
-        # print(shift)
         count = 0
 
         for i in range(len(result)):
-            # print(result[i])
-            # print(shift[i])
             if result[i] == shift[i]:
                 count += 1
-                # print(result[i])
 
         compare_elements[j] = count/len(result)
-
+        average += compare_elements[j]
         print(compare_elements[j])
-        if compare_elements[j] > 0.06:
+
+    average = average/ALPH_SIZE
+
+    for j in range(ALPH_SIZE):
+        if compare_elements[j] > average * 1.06:
             length_key.append(j + 1)
 
     print(length_key)
