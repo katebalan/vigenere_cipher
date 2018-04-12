@@ -63,7 +63,7 @@ def hack_key_length(encoded_info):
 
         compare_elements[j] = count/len(result)
         average += compare_elements[j]
-        print(compare_elements[j])
+        # print(compare_elements[j])
 
     average = average/ALPH_SIZE
 
@@ -71,4 +71,6 @@ def hack_key_length(encoded_info):
         if compare_elements[j] > average * 1.06:
             length_key_array.append(j + 1)
 
+    # TODO: if user wants, check for other length
+    print(length_key_array)
     return find_best_key(length_key_array)
