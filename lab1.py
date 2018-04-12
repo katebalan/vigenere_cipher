@@ -30,4 +30,5 @@ text_document = open('decrypted_text.txt', 'w')
 text_document.write(decrypt_msg)
 text_document.close()
 
-hack_key_length(encrypt_msg)
+key_length = hack_key_length(encrypt_msg)
+print(key_length)

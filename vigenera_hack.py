@@ -1,7 +1,7 @@
 # TODO hack: not finished
 # https://habrahabr.ru/post/103055/
 # https://habrahabr.ru/post/221485/
-
+import operator
 
 ALPH_SIZE = 26
 devide = "\n***********\n"
@@ -32,12 +32,25 @@ def shift_left(shift):
     return shift_list
 
 
+def find_best_key(length_key_array):
+    analize_keys = {}
+
+    for i in range(len(length_key_array) - 1):
+        analize_keys[length_key_array[i]] = 0
+        for j in range(i + 1, len(length_key_array)):
+            if length_key_array[j] % length_key_array[i] == 0:
+                analize_keys[length_key_array[i]] += 1
+
+    best_key = max(analize_keys.items(), key=operator.itemgetter(1))[0]
+    return best_key
+
+
 def hack_key_length(encoded_info):
     result = only_letters(encoded_info)
     shift = only_letters(encoded_info)
 
     compare_elements = {}
-    length_key = []
+    length_key_array = []
     average = 0
 
     for j in range(ALPH_SIZE):
@@ -56,11 +69,6 @@ def hack_key_length(encoded_info):
 
     for j in range(ALPH_SIZE):
         if compare_elements[j] > average * 1.06:
-            length_key.append(j + 1)
+            length_key_array.append(j + 1)
 
-    print(length_key)
-
-
-# encrypt_msg = "cmjorao mq xsr oqndc, gd mq pyjv sd krqgipc"
-# # print(devide)
-# hack_key_length(encrypt_msg)
+    return find_best_key(length_key_array)
