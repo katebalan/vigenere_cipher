@@ -32,6 +32,7 @@ def shift_left(shift):
     return shift_list
 
 
+# Choose from array the best key
 def find_best_key(length_key_array):
     analize_keys = {}
 
@@ -74,3 +75,13 @@ def hack_key_length(encoded_info):
     # TODO: if user wants, check for other length
     print(length_key_array)
     return find_best_key(length_key_array)
+
+
+def hack_key_word(encoded_info, key_length):
+    result = only_letters(encoded_info)
+
+    for i in range(0, key_length):
+        hack_block = ''
+        for j in range(i, len(result), key_length):
+            hack_block += result[j]
+            print(hack_block)

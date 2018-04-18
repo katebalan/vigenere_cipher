@@ -32,3 +32,6 @@ text_document.close()
 
 key_length = hack_key_length(encrypt_msg)
 print(key_length)
+
+
+hack_key_word(encrypt_msg, key_length)
